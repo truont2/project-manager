@@ -7,9 +7,10 @@ import React, { useState } from "react";
 // Interface: a structure that defines the contract in your application, It defines the syntax for classes to follow.
 interface ProjectListProps {
   projects: Project[];
+  onSave: (project: Project) => void;
 }
 // function takes in data which is the type of projectlistProps which is a object with value of project arrays
-function ProjectList({ projects }: ProjectListProps) {
+function ProjectList({ projects, onSave }: ProjectListProps) {
   const [projectBeingEdited, setProjectBeingEdited] = useState({});
 
   const handleEdit = (project: Project) => {
@@ -23,7 +24,7 @@ function ProjectList({ projects }: ProjectListProps) {
 
   const items = projects.map((project) => (
     <div key={project.id} className="cols-sm">
-      {project === projectBeingEdited ? (<ProjectForm onCancel={cancelEditing}/>) : <ProjectCard project={project} onEdit={handleEdit} />}
+      {project === projectBeingEdited ? (<ProjectForm onSave={onSave} onCancel={cancelEditing}/>) : <ProjectCard project={project} onEdit={handleEdit} />}
     </div>
   ));
   return <div className="row">{items}</div>;
