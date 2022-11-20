@@ -1,5 +1,6 @@
 import { Project } from "./Project";
 import ProjectCard from "./ProjectCard";
+import ProjectForm from './ProjectForm'
 
 // Interface: a structure that defines the contract in your application, It defines the syntax for classes to follow.
 interface ProjectListProps {
@@ -10,6 +11,7 @@ function ProjectList({ projects }: ProjectListProps) {
   const items = projects.map((project) => (
     <div key={project.id} className="cols-sm">
       <ProjectCard project={project}></ProjectCard>
+      <ProjectForm />
     </div>
   ));
   return <div className="row">{items}</div>;
